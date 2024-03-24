@@ -1,37 +1,73 @@
-In backend folder:
+==============================================================================
+            Instructions for Running the Application
+==============================================================================
 
-(consider updating pip if the installation does not work, by:      
- 	python -m pip install --upgrade pip)
+1. Initial Setup:
 
-pip install fastapi "uvicorn[standard]" / pip install fastapi[all]
-pip install normalizer
-pip install requests  
-pip install pytest
+   - Ensure `pip` is up to date:
+     ```
+     python -m pip install --upgrade pip
+     ```
 
-npm install axios
-npm install bootstrap
-npm install react-router-dom
-npm install react-select
+   - Install FastAPI and Uvicorn:
+     ```
+     pip install fastapi "uvicorn[standard]"   
+	 ```
+	 OR
+	 ```  
+	 pip install fastapi[all]
+     ```
 
-run backend server:
-	navigate to /backend/src, then run:
-		uvicorn server:app --reload    /    python -m uvicorn server:app --reload
+   - Install Frontend Dependencies:
+     ```
+     npm install axios bootstrap react-router-dom react-select
+     ```
 
-run frontend server:
-	navigate to /frontend, then run:
-		npm start
+2. Running Servers:
 
-run test:
-	Backend:
-		python -m venv env
-		env/Scripts/activate 
-		pip install fastapi uvicorn
-		pip install httpx
-		pip install pytest
-		-> pytest
-	
-	Frontend:
-		npm init jest@latest
-		npm install --save-dev ts-node
-		npm install @babel/core @babel/preset-typescript @babel/preset-react @babel/preset-flow --save-dev
-		yarn test
+   Backend:
+   - Navigate to `/backend/src`.
+   - Start the backend server:
+     ```
+     uvicorn server:app --reload
+     ```
+	 OR
+	 ```
+	 python -m uvicorn server:app --reload
+     ```
+	 
+   Frontend:
+   - Navigate to `/frontend`.
+   - Start the frontend server:
+     ```
+     npm start
+     ```
+
+3. Running Tests:
+
+   Backend:
+   - Set up a virtual environment (if not already done):
+     ```
+     python -m venv env
+     env/Scripts/activate 
+     ```
+   - Install necessary packages:
+     ```
+     pip install fastapi uvicorn httpx pytest
+     ```
+   - Run tests:
+     ```
+     pytest
+     ```
+
+   Frontend:
+   - Initialize Jest (if not already initialized):
+     ```
+     npm init jest@latest
+     ```
+   - Run tests:
+     ```
+     yarn test
+     ```
+
+==============================================================================
