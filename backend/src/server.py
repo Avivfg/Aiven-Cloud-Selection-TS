@@ -60,7 +60,7 @@ class Provider:
 
 clouds = []
 providers = []
-fetched = False # is there a best practice for that?
+fetched = False
 
 def fetch_clouds() -> dict:
     logging.info('starting clouds fetch..')
@@ -114,7 +114,6 @@ def haversine(lat1, lon1, lat2, lon2):
     distance = r * 2 * atan2(sqrt(a), sqrt(1 - a))
     return distance
 
-# implement
 def sort_by_geolocation(user_latitude, user_longitude, clouds_list):
     logging.info('Sorting clouds by distance to the user')
     sorted_clouds = sorted(
