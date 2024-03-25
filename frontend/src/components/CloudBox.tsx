@@ -10,7 +10,11 @@ interface CloudBoxProps {
 const CloudBox: React.FC<CloudBoxProps> = ({ cloud, selected, handleCardClick }) => {
   return (
     <div className="col-md-4 mb-4" key={cloud.cloud_id}>
-      <div className={`card ${selected ? 'selected' : ''}`} onClick={() => handleCardClick(cloud.cloud_id)}>
+      <div
+        className={`card ${selected ? 'selected' : ''}`}
+        onClick={() => handleCardClick(cloud.cloud_id)}
+        data-testid={`cloud-card-${cloud.cloud_id}`}
+      >
         <div className="card-body">
           {selected && <p className="legend-text">Selected</p>}
           <h5 className={`card-title-${selected ? 'selected' : ''}`}>{cloud.cloud_name}</h5>

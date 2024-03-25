@@ -65,7 +65,7 @@ const App: React.FC = () => {
       setUserLongitude(longitude);
     } catch (error) {
       setShowLocationAlert(true);
-      console.error('Error getting user location:', error);
+      console.log('Error getting user location:', error);
     }
   };
 
@@ -87,7 +87,7 @@ const App: React.FC = () => {
       if (providers.length === 0) setAllProviders(responseData.providers);
       setFetchCount(fetchCount + 1);
     } catch (error) {
-      console.error('Error fetching clouds and providers data:', error);
+      console.log('Error fetching clouds and providers data:', error);
     }
   };
 
@@ -95,22 +95,22 @@ const App: React.FC = () => {
     try {
       setSelectedProviders(selectedOptions.length > 0 ? selectedOptions : []);
       fetchData(selectedOptions.length > 0 ? selectedOptions : allProviders, sortByDistance).catch((error) => {
-        console.error('Error in fetchData:', error);
+        console.log('Error in fetchData:', error);
       });
     } catch (error) {
-      console.error('Error in handleProviderSelect:', error);
+      console.log('Error in handleProviderSelect:', error);
     }
   };
 
   const updateSelectedPresentedClouds = () => {
     try {
       const selectedAndPresentedClouds = clouds
-        .filter((cloud) => cloudSelected(cloud.cloud_id))
-        .map((cloud) => cloud.cloud_id);
+        .filter((cloud: Cloud) => cloudSelected(cloud.cloud_id))
+        .map((cloud: Cloud) => cloud.cloud_id);
       setSelectedPresentedClouds(selectedAndPresentedClouds);
       // sets only the selected clouds which are also not filtered (by provider)
     } catch (error) {
-      console.error('Error in updateSelectedPresentedClouds:', error);
+      console.log('Error in updateSelectedPresentedClouds:', error);
     }
   };
 
@@ -119,11 +119,11 @@ const App: React.FC = () => {
       setSelectedClouds(
         cloudSelected(cloudID)
           ? // add the cloud ID to the selected clouds. If already selected, filter it out.
-            selectedClouds.filter((selectedCloudID) => selectedCloudID !== cloudID)
+            selectedClouds.filter((selectedCloudID: number) => selectedCloudID !== cloudID)
           : [...selectedClouds, cloudID],
       );
     } catch (error) {
-      console.error('Error in handleCardClick:', error);
+      console.log('Error in handleCardClick:', error);
     }
   };
 
@@ -133,11 +133,11 @@ const App: React.FC = () => {
     try {
       // Fetch the data with the changed sort boolean. If no selected providers, get all.
       fetchData(selectedProviders.length > 0 ? selectedProviders : allProviders, !sortByDistance).catch((error) => {
-        console.error('Error in fetchData:', error);
+        console.log('Error in fetchData:', error);
       });
       setSortByDistance(!sortByDistance);
     } catch (error) {
-      console.error('Error in handleSortToggleChange:', error);
+      console.log('Error in handleSortToggleChange:', error);
     }
   };
 
@@ -163,18 +163,24 @@ const App: React.FC = () => {
     }
 
     fetchData().catch((error) => {
-      console.error('Error in fetchData:', error);
+      console.log('Error in fetchData:', error);
     });
     getUserLocation().catch((error) => {
-      console.error('Error in getUserLocation:', error);
+      console.log('Error in getUserLocation:', error);
     });
   }, [isMounted]);
+
+  const count = 1;
 
   return (
     <div className="content">
       {/* Navbar for the title */}
       <Navbar />
-
+      <div>
+        <h1>
+          Count: <h3 data-testid="count">{count}</h3>
+        </h1>
+      </div>
       {/* Headline, selection count and continue button */}
       {/* (implementation of the button action is out of scope for this assignment) */}
       <div className="container mt-4">
