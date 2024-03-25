@@ -170,17 +170,11 @@ const App: React.FC = () => {
     });
   }, [isMounted]);
 
-  const count = 1;
-
   return (
     <div className="content">
       {/* Navbar for the title */}
       <Navbar />
-      <div>
-        <h1>
-          Count: <h3 data-testid="count">{count}</h3>
-        </h1>
-      </div>
+
       {/* Headline, selection count and continue button */}
       {/* (implementation of the button action is out of scope for this assignment) */}
       <div className="container mt-4">
